@@ -1,4 +1,5 @@
 /dist/*
 /public/*
 public/*
+src/*
 src/style/reset.scss

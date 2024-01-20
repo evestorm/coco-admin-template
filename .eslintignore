@@ -1,7 +1,7 @@
 public
 dist
 *.d.ts
-/src/assets
+/src/*
 package.json
 .eslintrc.js
 .prettierrc.js

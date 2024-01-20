@@ -82,7 +82,7 @@ export function useDataThemeChange() {
   function dataThemeChange() {
     /* 如果当前是light夜间主题，默认切换到default主题 */
     if (useEpThemeStoreHook().epTheme === "light" && dataTheme.value) {
-      setLayoutThemeColor("default");
+      setLayoutThemeColor("light");
     } else {
       setLayoutThemeColor(useEpThemeStoreHook().epTheme);
     }
