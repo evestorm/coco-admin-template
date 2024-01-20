@@ -26,6 +26,9 @@ menus:
   hshome: 首页
   hslogin: 登录
   hsabnormal: 异常页面
+  teaching: 教学管理
+  textbooks: 教材管理
+  resource: 素材管理
   hsfourZeroFour: "404"
   hsfourZeroOne: "403"
   hsFive: "500"

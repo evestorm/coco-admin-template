@@ -26,6 +26,9 @@ menus:
   hshome: Home
   hslogin: Login
   hsabnormal: Abnormal Page
+  teaching: Teaching Management
+  textbooks: Textbook Management
+  resource: Resource Management
   hsfourZeroFour: "404"
   hsfourZeroOne: "403"
   hsFive: "500"

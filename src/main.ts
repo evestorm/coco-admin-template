@@ -9,7 +9,8 @@ import { MotionPlugin } from "@vueuse/motion";
 // import { useEcharts } from "@/plugins/echarts";
 import { injectResponsiveStorage } from "@/utils/responsive";
 
-// import Table from "@pureadmin/table";
+import Table from "@pureadmin/table";
+import { PureTableBar } from "@/components/RePureTableBar";
 // import PureDescriptions from "@pureadmin/descriptions";
 
 // 引入重置样式
@@ -50,9 +51,10 @@ getServerConfig(app).then(async config => {
   await router.isReady();
   injectResponsiveStorage(app, config);
   setupStore(app);
-  app.use(MotionPlugin).use(useI18n).use(ElementPlus);
+  app.use(MotionPlugin).use(useI18n).use(ElementPlus)
   // .use(useEcharts);
-  // .use(Table);
+  .use(Table)
+  .use(PureTableBar);
   // .use(PureDescriptions);
   app.mount("#app");
 });

@@ -29,6 +29,13 @@ const props = {
   columns: {
     type: Array as PropType<TableColumnList>,
     default: () => []
+  },
+  config: {
+    type: Object,
+    default: () => ({
+      showRefresh: true,
+      showDensity: true,
+    })
   }
 };
 
@@ -38,7 +45,7 @@ export default defineComponent({
   emits: ["refresh"],
   setup(props, { emit, slots, attrs }) {
     const buttonRef = ref();
-    const size = ref("default");
+    const size = ref("large");
     const isExpandAll = ref(true);
     const loading = ref(false);
     const checkAll = ref(true);
@@ -240,24 +247,35 @@ export default defineComponent({
                   <el-divider direction="vertical" />
                 </>
               ) : null}
-              <el-tooltip effect="dark" content="刷新" placement="top">
-                <RefreshIcon
-                  class={[
-                    "w-[16px]",
-                    iconClass.value,
-                    loading.value ? "animate-spin" : ""
-                  ]}
-                  onClick={() => onReFresh()}
-                />
-              </el-tooltip>
-              <el-divider direction="vertical" />
-              <el-tooltip effect="dark" content="密度" placement="top">
-                <el-dropdown v-slots={dropdown} trigger="click">
-                  <CollapseIcon class={["w-[16px]", iconClass.value]} />
-                </el-dropdown>
-              </el-tooltip>
-              <el-divider direction="vertical" />
-
+              {
+                props.config.showRefresh ? (
+                  <>
+                    <el-tooltip effect="dark" content="刷新" placement="top">
+                      <RefreshIcon
+                        class={[
+                          "w-[16px]",
+                          iconClass.value,
+                          loading.value ? "animate-spin" : ""
+                        ]}
+                        onClick={() => onReFresh()}
+                      />
+                    </el-tooltip>
+                    <el-divider direction="vertical" />
+                  </>
+                ) : null
+              }
+              {
+                props.config.showDensity ? (
+                  <>
+                    <el-tooltip effect="dark" content="密度" placement="top">
+                      <el-dropdown v-slots={dropdown} trigger="click" v-show="">
+                        <CollapseIcon class={["w-[16px]", iconClass.value]} />
+                      </el-dropdown>
+                    </el-tooltip>
+                    <el-divider direction="vertical" />
+                  </>
+                ) : null
+              }
               <el-popover
                 v-slots={reference}
                 placement="bottom-start"

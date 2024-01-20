@@ -7,7 +7,7 @@ export type HomeResult = {
   };
 };
 
-/** 登录 */
+/** 首页 */
 export const getHome = (data?: object) => {
   return http.request<HomeResult>("get", "/home", { data });
 };

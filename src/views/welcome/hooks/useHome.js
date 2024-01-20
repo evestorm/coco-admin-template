@@ -58,7 +58,7 @@ const formatData = (data) => {
 
 export default function useHome() {
   const homeData = reactive({
-    data: null
+    data: []
   });
 
   onMounted(async () => {
