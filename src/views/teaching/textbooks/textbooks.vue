@@ -51,6 +51,17 @@
         </PureTable>
       </template>
     </PureTableBar>
+    <FormDialogPanel ref="textbookFormDialogRef" v-bind="formConfig" @onEvent="onEvent">
+      <template #templatePreview="{ item, data }">
+        <el-divider />
+        <div class="template-preview w-full" v-if="data.templateId">
+          <h2 class="title mb-5">模板预览 - {{ item.props.options.find(v => v.value === data.templateId).label }}</h2>
+          <div class="content overflow-y-auto max-h-[50vh]">
+            <TemplatePreview :data="item.props.options.find(v => v.value === data.templateId).content" />
+          </div>
+        </div>
+      </template>
+    </FormDialogPanel>
   </el-main>
 </template>
 
@@ -59,12 +70,13 @@ import {ref} from "vue";
 
 import useSearch from "./hooks/useSearch";
 import useTable, { bookStatus } from "./hooks/useTable";
+import useFormDialog from './hooks/useFormDialog';
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import AddFill from "@iconify-icons/ri/add-fill";
 
-import {getTextBooks} from "@/api/textbooks";
-
 import SearchPanel from "@/components/SearchPanel/SearchPanel.vue";
+import FormDialogPanel from "@/components/FormDialogPanel/FormDialogPanel.vue";
+import TemplatePreview from "@/components/TempatePreview/TemplatePreview.vue";
 
 defineOptions({
   // name 作为一种规范最好必须写上并且和路由的name保持一致
@@ -75,9 +87,7 @@ defineOptions({
 const searchForm = useSearch();
 const onEvent = (payload) => {
   const { event, params } = payload;
-  if (event === "onSearch") {
-    onLoadData();
-  }
+  events[event] && events[event](params);
 };
 const {
   loading,
@@ -90,6 +100,8 @@ const {
   onCurrentChange,
   onLoadData
 } = useTable(searchForm.data);
+const { formConfig } = useFormDialog();
+const textbookFormDialogRef = ref(null);
 
 const tableRef = ref();
 
@@ -102,8 +114,43 @@ const handleEdit = (row) => {
 };
 
 const openAddDialog = () => {
-  console.log("openAddDialog");
+  formConfig.config.title = '新增活页教材';
+  formConfig.mode = 'edit';
+  console.log(textbookFormDialogRef);
+  formConfig.config.buttons.forEach((item) => {
+    item.show = ['formSubmit', 'onFormCancel'].includes(item.event);
+  });
+  textbookFormDialogRef && textbookFormDialogRef.value.show();
 };
+
+const events = {
+  onSearch() {
+    onLoadData();
+  },
+  formSubmit(params) {
+    console.log('formSubmit', params);
+    const { data, formRef } = params;
+    formRef.value?.getFormRef().value?.validate((valid) => {
+      if (valid) {
+        console.log('submit!', data);
+        textbookFormDialogRef && textbookFormDialogRef.value.close();
+      } else {
+        console.log('error submit!!', data);
+        return false;
+      }
+    });
+  },
+  onFormCancel(params) {
+    const { data, formRef } = params;
+    console.log('onFormCancel', formRef.value?.close);
+    formRef.value?.getFormRef().value?.resetFields();
+    textbookFormDialogRef && textbookFormDialogRef.value.close();
+  },
+  onCloseDialog(params) {
+    events.onFormCancel(params);
+  }
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

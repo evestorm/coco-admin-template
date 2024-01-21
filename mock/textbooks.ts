@@ -81,5 +81,202 @@ export default [
         }
       };
     }
-  }
+  },
+  {
+    url: "/cocoType",
+    method: "get",
+    response: () => {
+      return {
+        success: true,
+        data: [
+          {
+            id: 1,
+            name: "自定义页面",
+          },
+          {
+            id: 2,
+            name: "模块",
+          },
+          {
+            id: 3,
+            name: "项目",
+          },
+          {
+            id: 4,
+            name: "小节",
+          }]
+      }
+    }
+  },
+  {
+    url: '/categories',
+    method: "get",
+    response: () => {
+      return {
+        success: true,
+        data: [
+          {
+            id: 1,
+            name: '环境设计'
+          },
+          {
+            id: 2,
+            name: '城市规划'
+          },
+          {
+            id: 3,
+            name: '艺术'
+          },
+          {
+            id: 4,
+            name: '环境科学'
+          },
+          {
+            id: 5,
+            name: '管理学'
+          },
+          {
+            id: 6,
+            name: '计算机'
+          },
+          {
+            id: 7,
+            name: '心理学'
+          }
+        ]
+      }
+    }
+  },
+  {
+    url: '/templates',
+    method: "get",
+    response: () => {
+      return {
+        success: true,
+        data: [
+          {
+            id: 1,
+            name: '乡村景观设计模板',
+            content: [
+              {
+                id: 1,
+                name: '扉页',
+                type: 1,
+                style: '',
+                content: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+                heroImage: '',
+                children: []
+              },
+              {
+                id: 2,
+                name: '特色民居景观设计',
+                type: 2,
+                style: `{"title":"color: 'red'; font-size: '24px';"}`,
+                content: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+                heroImage: 'https://picsum.photos/200/300',
+                children: [
+                  {
+                    id: 3,
+                    name: '庭院花园设计',
+                    type: 3,
+                    style: `{"title":"color: 'blue'; font-size: '18px'"}`,
+                    content: 'lorem aaaaaaaaaaaa',
+                    heroImage: 'https://picsum.photos/400/600',
+                    children: [
+                      {
+                        id: 7,
+                        name: '庭院花园设计 - 自定义页面',
+                        type: 1,
+                        style: '',
+                        content: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+                        heroImage: '',
+                        children: []
+                      },
+                      {
+                        id: 4,
+                        name: '工作任务导入',
+                        type: 4,
+                        style: `{"title":"color: 'green'; font-size: '14px'"}`,
+                        content: '',
+                        heroImage: '',
+                        children: [
+                          {
+                            id: 5,
+                            name: '工作任务导入 - 具体内容',
+                            type: 1,
+                            style: '',
+                            content: '工作任务导入 - 具体内容',
+                            children: []
+                          }
+                        ]
+                      }]
+                  }
+                ]
+              },
+              {
+                id: 11,
+                name: '后记',
+                type: 1,
+                style: '',
+                content: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+                heroImage: '',
+                children: []
+              },
+            ]
+          },
+          {
+            id: 2,
+            name: '模版 2',
+            content: [
+              {
+                id: 1,
+                name: '扉页 23333',
+                type: 1,
+                style: '',
+                content: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+                heroImage: '',
+                children: []
+              },
+              {
+                id: 2,
+                name: '模块 1111111',
+                type: 2,
+                style: `{"title":"color: 'red'; font-size: '24px'"}`,
+                content: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+                heroImage: 'https://picsum.photos/200/300',
+                children: [
+                  {
+                    id: 3,
+                    name: '项目 1111111111',
+                    type: 3,
+                    style: `{"title":"color: 'blue'; font-size: '18px'"}`,
+                    content: 'lorem aaaaaaaaaaaa',
+                    heroImage: 'https://picsum.photos/400/600',
+                    children: [
+                      {
+                        id: 4,
+                        name: '小节 111111111',
+                        type: 4,
+                        style: `{"title":"color: 'green'; font-size: '14px'"}`,
+                        content: '',
+                        heroImage: '',
+                        children: [
+                          {
+                            id: 5,
+                            name: '1.1 任务计划 11111111',
+                            type: 1,
+                            style: '',
+                            content: '齐齐哈尔市',
+                            children: []
+                          }
+                        ]
+                      }]
+                  }
+                ]
+              }
+            ]
+          }],
+      }
+    },
+  },
 ] as MockMethod[];
