@@ -29,6 +29,7 @@ menus:
   teaching: Teaching Management
   textbooks: Textbook Management
   resource: Resource Management
+  resource-lib: Resource Library
   hsfourZeroFour: "404"
   hsfourZeroOne: "403"
   hsFive: "500"

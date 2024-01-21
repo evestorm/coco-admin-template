@@ -29,6 +29,7 @@ menus:
   teaching: 教学管理
   textbooks: 教材管理
   resource: 素材管理
+  resource-lib: 素材库
   hsfourZeroFour: "404"
   hsfourZeroOne: "403"
   hsFive: "500"
